@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
+import { config } from 'dotenv';
 import db from '@/lib/db';
 import {
   scanLinkedIn,
@@ -9,6 +10,9 @@ import {
   calculateOpsecScore,
 } from '@/lib/scanner';
 import { Hyperbrowser } from '@hyperbrowser/sdk';
+
+// Load environment variables
+config({ path: '.env.local' });
 
 export async function POST(request, { params }) {
   const { scanId } = await params;

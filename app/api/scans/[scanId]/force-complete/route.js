@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
+import { config } from 'dotenv';
 import db from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
 import { calculateOpsecScore, generateRecommendations } from '@/lib/scanner';
 import { Hyperbrowser } from '@hyperbrowser/sdk';
+
+// Load environment variables
+config({ path: '.env.local' });
 
 export async function POST(request, { params }) {
   try {
