@@ -53,9 +53,18 @@ export async function POST(request, { params }) {
       ]);
 
     // Extract live URL and session ID from LinkedIn scan (it creates authenticated session first)
+    console.log('[Execute] LinkedIn result:', { 
+      liveUrl: linkedInResult.liveUrl, 
+      sessionId: linkedInResult.sessionId,
+      findingsCount: linkedInResult.findings?.length || 0
+    });
+    
     if (linkedInResult.liveUrl) {
       liveUrl = linkedInResult.liveUrl;
       sessionId = linkedInResult.sessionId;
+      console.log('[Execute] Using LinkedIn session:', { liveUrl, sessionId });
+    } else {
+      console.log('[Execute] No LinkedIn session available');
     }
 
     allFindings.push(
