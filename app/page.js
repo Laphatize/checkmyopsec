@@ -1,65 +1,140 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { SkipToContent } from '@/components/skip-to-content';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900">
+      <SkipToContent />
+      <nav className="border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm" role="navigation" aria-label="Main navigation">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <Link href="/" className="text-2xl  text-zinc-900 dark:text-zinc-50 hover:opacity-80 transition-opacity" aria-label="CheckMyOpsec home">
+          check<span className='font-bold'>my</span><span className='text-green-500'>opsec</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="ghost" asChild>
+              <Link href="/login">Log in</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">Sign up</Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="text-center space-y-8 mb-16">
+          <Badge variant="secondary" className="mb-4">
+            OSINT Privacy Check
+          </Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            How much do you reveal online?
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            CheckMyOpsec scans LinkedIn, Twitter, GitHub, and other platforms to find what information
+            about you and your company is publicly accessible. Get a privacy score and actionable tips
+            to improve your operational security.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Button size="lg" asChild>
+              <Link href="/signup">Start Free Scan</Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link href="#how-it-works">Learn More</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div id="how-it-works" className="grid md:grid-cols-3 gap-6 mb-16">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span className="text-2xl">🔍</span>
+                Automated Scanning
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>
+                AI agents search for your name across LinkedIn, Twitter, GitHub, Facebook, and more
+                to find publicly accessible information.
+              </CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span className="text-2xl">📊</span>
+                Privacy Score
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>
+                Get a score from 0-100 based on how much sensitive information is exposed, including
+                company details, internal tools, and personal data.
+              </CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span className="text-2xl">💡</span>
+                Actionable Tips
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>
+                Receive specific recommendations on what to remove or change to improve your OPSEC
+                and protect your privacy online.
+              </CardDescription>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="bg-zinc-900 dark:bg-zinc-800 text-white border-zinc-800">
+          <CardHeader>
+            <CardTitle>Common OPSEC Risks We Find</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-start gap-3">
+              <Badge variant="destructive">High Risk</Badge>
+              <p className="text-sm">LinkedIn posts mentioning internal tools, tech stack, or security practices</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Badge variant="destructive">High Risk</Badge>
+              <p className="text-sm">GitHub commits with company email addresses or proprietary code</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Badge className="bg-orange-600">Medium Risk</Badge>
+              <p className="text-sm">Public social media profiles linking employer and personal information</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Badge className="bg-yellow-600">Low Risk</Badge>
+              <p className="text-sm">Job descriptions that are too detailed about company infrastructure</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="text-center mt-16">
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+            Ready to check your OPSEC?
+          </p>
+          <Button size="lg" asChild>
+            <Link href="/signup">Get Started Free</Link>
+          </Button>
         </div>
       </main>
+
+      <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-24 py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-zinc-600 dark:text-zinc-400">
+          <p>Built to help individuals and teams improve their operational security</p>
+        </div>
+      </footer>
     </div>
   );
 }
